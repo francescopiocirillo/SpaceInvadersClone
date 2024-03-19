@@ -50,6 +50,9 @@ window.onload = function() {
         context.drawImage(shipImg, ship.x, ship.y, ship.width, ship.height);
     }
 
+    alienImg = new Image();
+    alienImg.src = "media/alien-yellow.png";
+
     requestAnimationFrame(update);
     document.addEventListener("keydown", moveShip);
 }
@@ -71,4 +74,20 @@ function moveShip(e) {
     else if(e.code == "ArrowRight" && ship.x + shipVelocityX + ship.width <= board.width) {
         ship.x += shipVelocityX; //move right one tile
     }
+}
+
+function createAliens() {
+    for(let c = 0; c < alienColumns; c++) {
+        for(let r = 0; r < alienRows; r++) {
+            let alien = {
+                img: alienImg,
+                x: alienX + c*alienWidth,
+                y: alienY + r*alienHeight,
+                width: alienWidth,
+                height: alienHeight
+            };
+            alienArray.push(alien);
+        }
+    }
+    alienCount = alienArray.length;
 }
